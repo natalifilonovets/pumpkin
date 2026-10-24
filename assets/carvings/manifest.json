@@ -1,0 +1,108 @@
+{
+  "version": 1,
+  "generator": "built-in imagegen",
+  "body": "../pumpkin/base.png",
+  "coordinates": "1000x1000 logical canvas; original pumpkin at [55,35,890,890]",
+  "lightingColumns": [
+    "unlit",
+    "candlelit"
+  ],
+  "assets": {
+    "eyes": {
+      "file": "eyes.png",
+      "size": [
+        1145,
+        1374
+      ],
+      "designs": [
+        "mischievous narrowed gaze",
+        "surprised raised brows",
+        "sleepy drooping lids",
+        "fierce asymmetric gaze",
+        "playful wink"
+      ],
+      "rowCuts": [
+        0,
+        0.197,
+        0.403,
+        0.579,
+        0.776,
+        1
+      ],
+      "bounds": [
+        250,
+        365,
+        500,
+        230
+      ],
+      "alpha": "native"
+    },
+    "nose": {
+      "file": "nose.png",
+      "size": [
+        1024,
+        1536
+      ],
+      "designs": [
+        "irregular triangle",
+        "crooked witch silhouette",
+        "wide irregular rounded",
+        "whimsical heart"
+      ],
+      "rowCuts": [
+        0,
+        0.25,
+        0.5,
+        0.73,
+        1
+      ],
+      "bounds": [
+        445,
+        530,
+        110,
+        112
+      ],
+      "alpha": "renderer silhouette masks remove generated background matte; rendered texture retained"
+    },
+    "mouth": {
+      "file": "mouth.png",
+      "size": [
+        1161,
+        1355
+      ],
+      "designs": [
+        "crooked chunky-tooth grin",
+        "single-fang smirk",
+        "uneven toothy laugh",
+        "dimensional monster zigzag",
+        "sweet rounded smile"
+      ],
+      "rowCuts": [
+        0,
+        0.205,
+        0.37,
+        0.583,
+        0.79,
+        1
+      ],
+      "bounds": [
+        292,
+        635,
+        416,
+        205
+      ],
+      "alpha": "native"
+    }
+  },
+  "missingAssets": [],
+  "validation": {
+    "renderedCombinations": 100,
+    "lightingStates": 2,
+    "assembledPreviewResolution": [
+      1200,
+      1200
+    ],
+    "previewFolder": "../../output/",
+    "browserVisualReview": false
+  }
+}
