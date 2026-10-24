@@ -78,6 +78,21 @@ function select(k,i,animate=true){
  function reveal(now){if(state.stage!=='builder')return;drawAll(now);if(now-start<900)frame=requestAnimationFrame(reveal);else{carvingReveal=null;drawAll();}}
  frame=requestAnimationFrame(reveal);
 }
+let quizFitObserver=null;
+function fitQuizToViewport(){
+ if(state.stage!=='quiz')return;
+ const sheet=main.querySelector('.memory-workshop');if(!sheet)return;
+ const style=getComputedStyle(main),available=main.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);
+ const scale=Math.min(1,available/(sheet.offsetHeight+12));
+ sheet.style.transform=`scale(${Math.max(.1,scale)})`;
+}
+function observeQuizFit(){
+ if(quizFitObserver)quizFitObserver.disconnect();
+ if(typeof ResizeObserver==='undefined')return;
+ const sheet=main.querySelector('.memory-workshop');
+ quizFitObserver=new ResizeObserver(fitQuizToViewport);quizFitObserver.observe(main);if(sheet)quizFitObserver.observe(sheet);
+ requestAnimationFrame(fitQuizToViewport);
+}
 function renderQuiz(){
  cancelAnimationFrame(frame);
  const id=state.order.find(x=>!state.solved.includes(x));
@@ -85,7 +100,7 @@ function renderQuiz(){
  answered=false;
  memoryExpression=Math.min(5,state.solved.length);
  main.innerHTML=`<section class="memory-workshop" aria-label="Bring the pumpkin to life"><div class="memory-pumpkin"><div class="pumpkin-aura" aria-hidden="true"></div><canvas id="memory-lantern" width="1200" height="1200" role="img" aria-label="Pumpkin light: ${state.solved.length} of 6 memories"></canvas><div class="memory-magic" aria-hidden="true">${Array.from({length:12},(_,i)=>`<i style="--i:${i};--x:${12+(i*23)%76}%;--y:${24+(i*17)%65}%"></i>`).join('')}</div><p class="pumpkin-caption" id="pumpkin-progress">${state.solved.length===6?'Your lantern is alive!':'Light this pumpkin with your answer.'}</p></div><div class="memory-card"><span class="notebook-clip" aria-hidden="true"></span><div class="memory-heading"><span class="notebook-owner">Frank’s workshop notes</span><span id="memory-count">MEMORY ${Math.min(6,state.solved.length+1)} OF 6</span></div><h2>${q?'True or false?':'You made it glow!'}</h2>${q?`<div class="memory-question"><p class="statement" tabindex="-1">${q.text}</p></div><div class="answers"><button id="true"><span aria-hidden="true">✓</span> TRUE</button><button id="false"><span aria-hidden="true">×</span> FALSE</button></div><div id="feedback" class="feedback" role="status" aria-live="polite"></div><button id="next" class="primary memory-next" hidden>Next</button><button id="rewatch" class="text-button">↻ Watch again</button>`:`<p class="memory-finished">Six memories. One magical lantern.<br>Now let’s make one of your own.</p><button id="build" class="primary">MAKE MY PUMPKIN →</button>`}</div></section>`;
- startMemoryDrawing(q?0:1);
+ startMemoryDrawing(q?0:1);observeQuizFit();
  button('build',()=>go('builder'));
  if(!q)return;
  for(const v of [true,false])button(String(v),()=>{

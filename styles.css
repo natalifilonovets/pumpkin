@@ -362,3 +362,40 @@ body:not(.is-intro):not(.is-builder) footer{padding-bottom:55px}
 
 .story-external::before{filter:blur(4px);transform:scale(1.055)}
 .story-external:hover::before{transform:scale(1.075)}
+
+/* Embedded quiz: navigation has its own row, outside the physical card. */
+body.is-quiz{height:100svh;min-height:0;overflow:hidden;display:grid;grid-template-rows:48px minmax(0,1fr) 64px}
+.is-quiz header{height:48px;min-height:0;padding:7px 3%;border:0;background:#1a101b33}
+.is-quiz .brand{font-size:12px;letter-spacing:1px}
+.is-quiz .brand span,.is-quiz .mission,.is-quiz footer{display:none}
+.is-quiz .header-right{gap:8px}
+.is-quiz header button{padding:7px 10px;font-size:10px}
+.is-quiz main{height:100%;min-height:0;min-width:0;padding:16px 4% 12px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.is-quiz .memory-workshop{flex:0 0 100%;width:100%;max-width:1180px;margin:0;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(22px,4vw,60px);transform-origin:center center;will-change:transform}
+.is-quiz .memory-pumpkin{width:min(100%,calc(100svh - 172px));margin:auto}
+.is-quiz .pumpkin-caption{font-size:12px;margin:0}
+.is-quiz .memory-card{margin:14px 8px 12px 0;padding:26px 26px 20px 36px;min-width:0}
+.is-quiz .memory-card h2{font-size:clamp(30px,3vw,42px);margin:17px 0 14px}
+.is-quiz .memory-heading{padding-bottom:10px;gap:8px}
+.is-quiz .notebook-owner{font-size:16px}
+.is-quiz .memory-heading #memory-count{font-size:8px}
+.is-quiz .memory-question{padding:12px 0 16px;margin-bottom:14px}
+.is-quiz .memory-card .statement{min-height:0;font-size:clamp(20px,2.2vw,26px);line-height:1.4}
+.is-quiz .memory-card .answers button{min-height:49px;padding:12px 10px;font-size:15px}
+.is-quiz .memory-card .feedback,.is-quiz .memory-card .feedback:empty{min-height:55px;padding:14px 0 7px;font-size:13px;line-height:1.4}
+.is-quiz .memory-next{font-size:11px;padding:10px 17px;margin-top:4px}
+.is-quiz .memory-card #rewatch{margin-top:12px;font-size:11px}
+.is-quiz .page-nav{position:relative;inset:auto;align-self:center;justify-self:end;margin:0 22px 5px;gap:8px;z-index:10}
+.is-quiz .page-nav button{width:108px;height:50px;font-size:20px}
+@media(max-width:650px){
+ body.is-quiz{grid-template-rows:43px minmax(0,1fr) 52px}
+ .is-quiz header{height:43px}.is-quiz .brand{font-size:9px}.is-quiz main{padding:10px 18px}
+ .is-quiz .memory-workshop{grid-template-columns:1fr;gap:10px;max-width:440px}
+ .is-quiz .memory-pumpkin{width:min(46vw,180px)}
+ .is-quiz .pumpkin-caption{display:none}
+ .is-quiz .memory-card{margin:8px 3px;padding:21px 21px 17px 30px}
+ .is-quiz .memory-card h2{font-size:31px;margin:12px 0}
+ .is-quiz .memory-card .statement{font-size:21px}
+ .is-quiz .page-nav{margin-right:12px;margin-bottom:2px}
+ .is-quiz .page-nav button{width:95px;height:44px;font-size:18px}
+}
